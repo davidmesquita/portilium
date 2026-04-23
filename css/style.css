@@ -358,6 +358,10 @@ footer{padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:
 /* responsive */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+  .sobre-grid{grid-template-columns:1fr;gap:1.5rem}
+  .sobre-aside{gap:.6rem}
+  .sobre-card-val{font-size:.82rem;flex-wrap:wrap}
+  .sobre-links{gap:.45rem}
   .exp-row{grid-template-columns:1fr}
   .exp-left{border-right:none;border-bottom:1px solid var(--wire3);padding-right:0;padding-bottom:1rem;margin-bottom:1rem}
   .exp-right{padding-left:0}
@@ -465,6 +469,7 @@ footer{padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:
 #term-input::placeholder{color:rgba(255,255,255,.18)}
 
 @media(max-width:600px){
+  .sobre-link{width:100%;justify-content:center}
   #term-btn{
     bottom:16px;left:16px;
     width:48px;height:48px;
@@ -473,17 +478,22 @@ footer{padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:
   }
   #terminal{
     left:0;right:0;bottom:72px;
-    width:100%;
-    border-radius:12px;
+    width:100vw;
+    max-width:100vw;
+    border-radius:12px 12px 0 0;
     transform-origin:bottom center;
+    max-height:calc(100dvh - 80px);
     display:flex;flex-direction:column;
   }
   #terminal.term-hidden{transform:scale(.95) translateY(10px);opacity:0}
   #terminal.term-open{transform:scale(1) translateY(0);opacity:1}
   .term-body{
-    max-height:40vh;
+    min-height:0;
+    max-height:none;
     flex:1;
+    overflow-y:auto;
   }
-  #term-input{font-size:16px}
+  .term-input-row{padding-bottom:calc(.7rem + env(safe-area-inset-bottom))}
+  #term-input{min-width:0;font-size:16px}
   .term-prompt{font-size:.78rem}
 }
