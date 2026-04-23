@@ -281,7 +281,7 @@ Teresina, PI — Aberto a trabalho remoto`;
           <span class="snake-score" id="snake-score">score: 0</span>
         </div>
         <canvas id="snake-canvas" width="360" height="360" aria-label="Jogo da cobrinha"></canvas>
-        <div class="snake-help">setas / WASD · ENTER reinicia · ESC sai</div>
+        <div class="snake-help">setas / WASD · toque/clique após game over · ESC sai</div>
         <div class="snake-touch" aria-hidden="true">
           <button class="snake-key" data-dir="up">↑</button>
           <button class="snake-key" data-dir="left">←</button>
@@ -386,7 +386,10 @@ Teresina, PI — Aberto a trabalho remoto`;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const dpr = Math.max(window.devicePixelRatio || 1, 1);
-    const cssSize = Math.min(window.innerWidth * 0.88, 420);
+    const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const reservedUiHeight = window.innerWidth <= 600 ? 270 : 210;
+    const maxByHeight = Math.max(220, viewportHeight - reservedUiHeight);
+    const cssSize = Math.min(window.innerWidth * 0.88, maxByHeight, 420);
     canvas.style.width = `${cssSize}px`;
     canvas.style.height = `${cssSize}px`;
     const px = Math.floor(cssSize * dpr);
@@ -438,12 +441,18 @@ Teresina, PI — Aberto a trabalho remoto`;
       ctx.fillText('game over', canvas.width / 2, canvas.height / 2 - cell * 0.25);
       ctx.fillStyle = '#C9D1D9';
       ctx.font = `${Math.floor(cell * 0.6)}px JetBrains Mono`;
-      ctx.fillText('pressione ENTER para reiniciar', canvas.width / 2, canvas.height / 2 + cell * 0.9);
+      ctx.fillText('toque ou ENTER para reiniciar', canvas.width / 2, canvas.height / 2 + cell * 0.9);
     }
   }
 
   function bindSnakeTouch() {
     if (!snakeOverlay) return;
+    snakeOverlay.addEventListener('pointerdown', e => {
+      if (!snakeState || !snakeState.over) return;
+      if (e.target.closest('.snake-key')) return;
+      restartSnakeGame();
+    });
+
     snakeOverlay.querySelectorAll('.snake-key').forEach(btn => {
       btn.addEventListener('click', () => {
         const dir = btn.getAttribute('data-dir');
@@ -453,6 +462,11 @@ Teresina, PI — Aberto a trabalho remoto`;
         if (dir === 'right') setSnakeDirection({ x: 1, y: 0 });
       });
     });
+  }
+
+  function restartSnakeGame() {
+    initSnakeState();
+    renderSnake();
   }
 
   function updateSnakeScore() {
@@ -501,8 +515,7 @@ Teresina, PI — Aberto a trabalho remoto`;
         return;
       }
       if (e.key === 'Enter' && snakeState && snakeState.over) {
-        initSnakeState();
-        renderSnake();
+        restartSnakeGame();
         return;
       }
       if (k === 'arrowup' || k === 'w') { e.preventDefault(); setSnakeDirection({ x: 0, y: -1 }); return; }

@@ -518,6 +518,7 @@ body.snake-mode{overflow:hidden}
   background:radial-gradient(circle at 30% 20%, rgba(34,211,238,.08), rgba(0,0,0,.95) 52%), #03060C;
   display:flex;align-items:center;justify-content:center;
   padding:1rem;
+  overflow-y:auto;
 }
 .snake-wrap{
   width:min(520px, 100%);
@@ -526,6 +527,9 @@ body.snake-mode{overflow:hidden}
   box-shadow:0 0 38px rgba(34,211,238,.16), inset 0 0 24px rgba(34,211,238,.07);
   border-radius:10px;
   padding:1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.2rem;
 }
 .snake-head{
   display:flex;justify-content:space-between;align-items:center;
@@ -560,6 +564,25 @@ body.snake-mode{overflow:hidden}
 
 @media(max-width:900px){
   .snake-touch{display:grid}
+}
+
+@media(max-width:600px){
+  #snake-overlay{
+    align-items:flex-start;
+    padding:.55rem;
+  }
+  .snake-wrap{
+    width:100%;
+    max-height:calc(100dvh - 1.1rem);
+    padding:.75rem;
+    border-radius:8px;
+  }
+  #snake-canvas{
+    width:min(100%, 74dvh);
+    margin-inline:auto;
+  }
+  .snake-help{font-size:.71rem}
+  .snake-key{height:44px}
 }
 
 @media(max-width:600px){
