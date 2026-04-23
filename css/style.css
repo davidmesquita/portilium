@@ -191,6 +191,67 @@ section{padding:6rem 5%;border-bottom:1px solid var(--wire3)}
 h2{font-family:var(--head);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:3rem}
 h2 em{font-style:normal;color:var(--accent)}
 
+/* sobre */
+#sobre{background:#F8FAFC}
+.sobre-grid{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:4rem;
+  align-items:start;
+}
+.sobre-bio{
+  display:flex;flex-direction:column;gap:1.25rem;
+}
+.sobre-bio p{
+  font-size:.97rem;color:#475569;line-height:1.85;
+}
+.sobre-bio strong{color:var(--ink);font-weight:600}
+.sobre-aside{
+  display:flex;flex-direction:column;gap:.75rem;
+}
+.sobre-card{
+  padding:1rem 1.2rem;
+  background:#fff;
+  border:1px solid var(--wire);
+  border-radius:6px;
+  transition:border-color .2s;
+}
+.sobre-card:hover{border-color:var(--accent)}
+.sobre-card-label{
+  font-size:.67rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:#94A3B8;
+  font-family:var(--mono);margin-bottom:.4rem;
+}
+.sobre-card-label::before{content:'';}
+.sobre-card-val{
+  font-size:.85rem;color:var(--ink);font-family:var(--mono);
+  display:flex;align-items:center;gap:.45rem;
+}
+.sobre-status{color:#22C55E;font-size:.5rem}
+.sobre-links{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem;
+}
+.sobre-link{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.45rem 1rem;
+  border:1.5px solid var(--wire);
+  border-radius:var(--r);
+  font-family:var(--mono);font-size:.78rem;font-weight:600;
+  color:var(--ink);text-decoration:none;
+  transition:all .18s;
+}
+.sobre-link:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+/* dark mode – sobre */
+body.dark #sobre{background:#0D1117}
+body.dark .sobre-bio p{color:#8B949E}
+body.dark .sobre-bio strong{color:#E6EDF3}
+body.dark .sobre-card{background:#161B22;border-color:rgba(255,255,255,0.06)}
+body.dark .sobre-card:hover{border-color:var(--accent)}
+body.dark .sobre-card-val{color:#E6EDF3}
+body.dark .sobre-link{color:#E6EDF3;border-color:rgba(255,255,255,0.1)}
+body.dark .sobre-link:hover{border-color:var(--accent);color:var(--accent)}
+
 /* experience */
 #experiencia{background:#F8FAFC}
 .exp-grid{display:flex;flex-direction:column}
