@@ -281,12 +281,13 @@ Teresina, PI — Aberto a trabalho remoto`;
           <span class="snake-score" id="snake-score">score: 0</span>
         </div>
         <canvas id="snake-canvas" width="360" height="360" aria-label="Jogo da cobrinha"></canvas>
-        <div class="snake-help">setas / WASD · toque/clique após game over · ESC sai</div>
+        <div class="snake-help">setas / WASD · botao central reinicia · ESC sai</div>
         <div class="snake-touch" aria-hidden="true">
-          <button class="snake-key" data-dir="up">↑</button>
-          <button class="snake-key" data-dir="left">←</button>
-          <button class="snake-key" data-dir="down">↓</button>
-          <button class="snake-key" data-dir="right">→</button>
+          <button class="snake-key snake-key-up" data-dir="up">↑</button>
+          <button class="snake-key snake-key-left" data-dir="left">←</button>
+          <button class="snake-key snake-key-center" data-dir="reset">⟳</button>
+          <button class="snake-key snake-key-right" data-dir="right">→</button>
+          <button class="snake-key snake-key-down" data-dir="down">↓</button>
         </div>
       </div>
     `;
@@ -456,6 +457,7 @@ Teresina, PI — Aberto a trabalho remoto`;
     snakeOverlay.querySelectorAll('.snake-key').forEach(btn => {
       btn.addEventListener('click', () => {
         const dir = btn.getAttribute('data-dir');
+        if (dir === 'reset') { restartSnakeGame(); return; }
         if (dir === 'up') setSnakeDirection({ x: 0, y: -1 });
         if (dir === 'down') setSnakeDirection({ x: 0, y: 1 });
         if (dir === 'left') setSnakeDirection({ x: -1, y: 0 });
