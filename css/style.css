@@ -318,7 +318,7 @@ footer{padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:
   text-decoration:none;
 }
 
-/* â”€â”€ TERMINAL â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ TERMINAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #term-btn{
   position:fixed;bottom:28px;left:28px;z-index:999;
   width:56px;height:56px;border-radius:12px;
@@ -411,16 +411,14 @@ footer{padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:
     font-size:.85rem;
   }
   #terminal{
-    left:0;right:0;bottom:0;
+    left:0;right:0;bottom:72px;
     width:100%;
-    border-radius:16px 16px 0 0;
-    border-left:none;border-right:none;border-bottom:none;
+    border-radius:12px;
     transform-origin:bottom center;
-    max-height:75vh;
     display:flex;flex-direction:column;
   }
-  #terminal.term-hidden{transform:translateY(100%);opacity:0}
-  #terminal.term-open{transform:translateY(0);opacity:1}
+  #terminal.term-hidden{transform:scale(.95) translateY(10px);opacity:0}
+  #terminal.term-open{transform:scale(1) translateY(0);opacity:1}
   .term-body{
     max-height:40vh;
     flex:1;
